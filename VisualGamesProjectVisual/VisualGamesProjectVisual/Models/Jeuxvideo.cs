@@ -7,6 +7,6 @@ namespace VialGamesVisual.Models
 {
 	public class Jeuxvideo
 	{
-		String tocard;
+		String nom;
 	}
 }
