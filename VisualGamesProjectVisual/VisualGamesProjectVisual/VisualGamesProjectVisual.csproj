@@ -179,10 +179,13 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JeuxvideoController.cs" />
+    <Compile Include="Controllers\MembreController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Membre.cs" />
+    <Compile Include="Models\MembreDAO.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Jeuxvideo.cs" />
     <Compile Include="Models\JeuxvideoDAO.cs" />
