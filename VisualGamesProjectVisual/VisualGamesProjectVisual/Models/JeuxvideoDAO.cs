@@ -26,8 +26,22 @@ namespace VialGamesVisual.Models
 				SqlDataReader reader = command.ExecuteReader(); //Contient les différents records que la bd a envoyé
 				while (reader.Read())
 				{
-					jvs.Add(new Jeuxvideo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-						reader.GetDateTime(5), reader.GetString(6), reader.GetString(7), reader.GetFloat(8), reader.GetString(9)));
+					/*
+					int id= (int)reader["Id"];
+					string nom = (string)reader["Nom"];
+					string editeur = (string)reader["Editeur"];
+					string types = (string)reader["Types"];
+					string developpeur= (string)reader["Developpeur"];
+					string sortie = (string)reader["Sortie"];
+					string genres = (string)reader["Genres"];
+					string theme = (string)reader["Theme"];
+					decimal Prix = (decimal)reader["Prix"];
+					string Description = (string)reader["Description"];*/
+
+					//jvs.Add(new Jeuxvideo(reader.GetInt32(0),reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5),
+					//reader.GetString(6), reader.GetString(7), reader.GetFloat(8), reader.GetString(9)));
+					jvs.Add(new Jeuxvideo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5),
+						reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9),reader.GetString(10)));
 				}
 
 			}
@@ -47,7 +61,7 @@ namespace VialGamesVisual.Models
 				if (reader.Read())
 				{
 					jv = new Jeuxvideo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-						reader.GetDateTime(5), reader.GetString(6), reader.GetString(7), reader.GetFloat(8), reader.GetString(9));
+						reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9), reader.GetString(10));
 				}
 			}
 
@@ -70,6 +84,7 @@ namespace VialGamesVisual.Models
 				command.Parameters.AddWithValue("@theme", jv.Theme);
 				command.Parameters.AddWithValue("@prix", jv.Prix);
 				command.Parameters.AddWithValue("@description", jv.Description);
+				command.Parameters.AddWithValue("@urlImage", jv.UrlImage);
 
 				jv.Id = (int)command.ExecuteScalar(); //Revnoyer la valeur de l'intersection de la première ligne première colonne
 
@@ -109,6 +124,7 @@ namespace VialGamesVisual.Models
 				command.Parameters.AddWithValue("@theme", jv.Theme);
 				command.Parameters.AddWithValue("@prix", jv.Prix);
 				command.Parameters.AddWithValue("@description", jv.Description);
+				command.Parameters.AddWithValue("@urlImage", jv.UrlImage);
 
 				aEteModifie = command.ExecuteNonQuery() != 0; // elle envoit le nombre de lignes modifiées avec ma commande
 
