@@ -37,7 +37,7 @@ namespace VialGamesVisual.Models
 			set;
 		}
 
-		public DateTime Sortie
+		public String Sortie
 		{
 			get;
 			set;
@@ -55,7 +55,7 @@ namespace VialGamesVisual.Models
 			set;
 		}
 
-		public float Prix
+		public decimal Prix
 		{
 			get;
 			set;
@@ -67,7 +67,18 @@ namespace VialGamesVisual.Models
 			set;
 		}
 
-		public Jeuxvideo(int id, String nom, String editeur, String types, String developpeur, DateTime sortie, String genres, String theme, float prix, String description)
+		public String UrlImage
+		{
+			get;
+			set;
+		}
+
+		public Jeuxvideo()
+		{
+
+		}
+
+		public Jeuxvideo(int id, String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,String urlImage)
 		{
 			Id = id;
 			Nom = nom;
@@ -79,10 +90,14 @@ namespace VialGamesVisual.Models
 			Theme = theme;
 			Prix = prix;
 			Description = description;
+			UrlImage = urlImage;
 
 		}
 
-		public Jeuxvideo(String nom, String editeur, String types, String developpeur, DateTime sortie, String genres, String theme, float prix, String description)
-			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description) { }
+		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,String urlImage)
+			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description,urlImage) { }
+
+		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description)
+			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description,"0") { }
 	}
 }
