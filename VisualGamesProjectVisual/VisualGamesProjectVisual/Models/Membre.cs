@@ -5,7 +5,7 @@ using System.Web;
 
 namespace VisualGamesProjectVisual.Models
 {
-    public class Class1
+    public class Membre
     {
         public int Id
         {

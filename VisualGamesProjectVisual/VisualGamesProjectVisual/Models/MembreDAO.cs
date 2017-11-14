@@ -5,7 +5,8 @@ using System.Web;
 
 namespace VisualGamesProjectVisual.Models
 {
-    public class Membre
+    public class MembreDAO
+    
     {
         private static readonly string QUERY = "SELECT * FROM membre";
         private static readonly string GET = QUERY + " WHERE id=#id";
@@ -24,7 +25,7 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    membres.Add(new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetBoolean(2)));
+                    membres.Add(new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetInt(9), reader.GetString(10)));
                 }
             }
 
@@ -43,7 +44,7 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    membre = new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetBoolean(2));
+                    membre = new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetInt(9), reader.GetString(10));
 
                 }
             }

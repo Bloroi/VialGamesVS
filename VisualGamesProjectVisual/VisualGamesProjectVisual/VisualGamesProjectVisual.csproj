@@ -189,6 +189,8 @@
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Jeuxvideo.cs" />
     <Compile Include="Models\JeuxvideoDAO.cs" />
+    <Compile Include="Models\ReservationEnCours.cs" />
+    <Compile Include="Models\ReservationEnCoursDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
