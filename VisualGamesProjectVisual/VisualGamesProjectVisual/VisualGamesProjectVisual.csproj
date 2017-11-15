@@ -177,13 +177,19 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdministrateurController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JeuxvideoController.cs" />
+    <Compile Include="Controllers\MagasinierController.cs" />
     <Compile Include="Controllers\MembreController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administrateur.cs" />
+    <Compile Include="Models\AdministrateurDAO.cs" />
+    <Compile Include="Models\Magasinier.cs" />
+    <Compile Include="Models\MagasinierDAO.cs" />
     <Compile Include="Models\Membre.cs" />
     <Compile Include="Models\MembreDAO.cs" />
     <Compile Include="Models\Database.cs" />
