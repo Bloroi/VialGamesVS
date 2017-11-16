@@ -10,11 +10,11 @@ namespace VialGamesVisual.Models
 	{
 		private static readonly string QUERY = "SELECT * from jeuxvideo";
 		private static readonly string GET = QUERY + "WHERE id = @id";
-		private static readonly string CREATE = "INSERT INTO jeuxvideo(nom,editeur,types,developpeur,sortie,genres,theme,prix,description)" +
-			"OUTPUT INSERTED.id VALUES(@nom,@editeur,@types,@developpeur,@sortie,@genres,@theme,@prix,@description)";
+		private static readonly string CREATE = "INSERT INTO jeuxvideo(nom,editeur,types,developpeur,sortie,genres,theme,prix,description,urlImage)" +
+			"OUTPUT INSERTED.id VALUES(@nom,@editeur,@types,@developpeur,@sortie,@genres,@theme,@prix,@description,@urlImage)";
 		private static readonly string DELETE = "DELETE FROM jeuxvideo WHERE id=@id";
 		private static readonly string UPDATE = "UPDATE jeuxvideo SET nom = @nom,editeur=@editeur,types=@types,developpeur=@developpeur,sortie=@sortie,genres=@genres," +
-			"theme=@theme,prix=@prix,description=@description";
+			"theme=@theme,prix=@prix,description=@description,urlImage=@urlImage";
 
 		public static List<Jeuxvideo> getAllJeuxvideo()
 		{
