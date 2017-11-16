@@ -12,10 +12,10 @@ namespace VisualGamesProjectVisual.Models
 
 		private static readonly string QUERY = "SELECT * from Magasinier";
 		private static readonly string GET = QUERY + "WHERE id = @id";
-		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,email,tel)" +
-			"OUTPUT INSERTED.id VALUES(@username,@password,@email,@tel)";
+		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,tel,email)" +
+			"OUTPUT INSERTED.id VALUES(@username,@password,@tel,@email)";
 		private static readonly string DELETE = "DELETE FROM Magasinier WHERE id=@id";
-		private static readonly string UPDATE = "UPDATE Magasinier SET nom = @username=username,@password = password,@email = email,@tel = tel";
+		private static readonly string UPDATE = "UPDATE Magasinier SET nom = @username=username,@password = password,@tel = tel,@email = email";
 
 		public static List<Magasinier> getAllMagasinier()
 		{
@@ -63,8 +63,8 @@ namespace VisualGamesProjectVisual.Models
 				SqlCommand command = new SqlCommand(CREATE, conn);
 				command.Parameters.AddWithValue("@username", m.Username);
 				command.Parameters.AddWithValue("@password", m.Password);
-				command.Parameters.AddWithValue("@email", m.Email);
 				command.Parameters.AddWithValue("@tel", m.Tel);
+				command.Parameters.AddWithValue("@email", m.Email);
 
 
 				m.Id = (int)command.ExecuteScalar(); //Revnoyer la valeur de l'intersection de la première ligne première colonne
@@ -98,8 +98,8 @@ namespace VisualGamesProjectVisual.Models
 				SqlCommand command = new SqlCommand(UPDATE, conn);
 				command.Parameters.AddWithValue("@username", m.Username);
 				command.Parameters.AddWithValue("@password", m.Password);
-				command.Parameters.AddWithValue("@email", m.Email);
 				command.Parameters.AddWithValue("@tel", m.Tel);
+				command.Parameters.AddWithValue("@email", m.Email);
 
 				aEteModifie = command.ExecuteNonQuery() != 0;
 
