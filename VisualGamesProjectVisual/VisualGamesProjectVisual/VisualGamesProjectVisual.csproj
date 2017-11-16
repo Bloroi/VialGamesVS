@@ -183,6 +183,7 @@
     <Compile Include="Controllers\MagasinierController.cs" />
     <Compile Include="Controllers\MembreController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\ReservationEnCoursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +198,8 @@
     <Compile Include="Models\JeuxvideoDAO.cs" />
     <Compile Include="Models\ReservationEnCours.cs" />
     <Compile Include="Models\ReservationEnCoursDAO.cs" />
+    <Compile Include="Models\ReservationFinie.cs" />
+    <Compile Include="Models\ReservationFinieDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,13 +209,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\angular\favicon.ico" />
-    <Content Include="Scripts\angular\index.html" />
-    <Content Include="Scripts\angular\inline.bundle.js" />
-    <Content Include="Scripts\angular\main.bundle.js" />
-    <Content Include="Scripts\angular\polyfills.bundle.js" />
-    <Content Include="Scripts\angular\styles.bundle.js" />
-    <Content Include="Scripts\angular\vendor.bundle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -237,11 +233,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\angular\inline.bundle.js.map" />
-    <Content Include="Scripts\angular\main.bundle.js.map" />
-    <Content Include="Scripts\angular\polyfills.bundle.js.map" />
-    <Content Include="Scripts\angular\styles.bundle.js.map" />
-    <Content Include="Scripts\angular\vendor.bundle.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace VisualGamesProjectVisual.Models
 {
-    public class ReservationEnCours
+    public class ReservationFinie
     {
         public int IdReservation
         {
@@ -13,13 +13,13 @@ namespace VisualGamesProjectVisual.Models
             set;
         }
 
-        public string Date
+        public String Date
         {
             get;
             set;
         }
 
-        public string DateLivraison
+        public String DateLivraison
         {
             get;
             set;
@@ -37,11 +37,11 @@ namespace VisualGamesProjectVisual.Models
             set;
         }
 
-        public ReservationEnCours()
+        public ReservationFinie()
         {
         }
 
-        public ReservationEnCours(int idReservation, string date, string dateLivraison, int idMembre, int idJeuVideo)
+        public ReservationFinie(int idReservation, string date, string dateLivraison, int idMembre, int idJeuVideo)
         {
             IdReservation = IdReservation;
             Date = date;
@@ -50,7 +50,7 @@ namespace VisualGamesProjectVisual.Models
             IdJeuVideo = idJeuVideo;
         }
 
-        public ReservationEnCours(string date, string dateLivraison, int idMembre, int idJeuVideo):this(0, date, dateLivraison, idMembre, idJeuVideo)
+        public ReservationFinie(string date, string dateLivraison, int idMembre, int idJeuVideo) : this(0, date, dateLivraison, idMembre, idJeuVideo)
         {
 
         }

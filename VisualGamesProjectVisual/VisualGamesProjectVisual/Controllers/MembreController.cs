@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using VisualGamesProjectVisual.Models;
 
 namespace VisualGamesProjectVisual.Controllers
 {
@@ -18,11 +19,11 @@ namespace VisualGamesProjectVisual.Controllers
         // GET: api/Membre/5
         public Membre Get(int id)
         {
-            return TodoDAO.Get(id);
+            return MembreDAO.Get(id);
         }
 
         // POST: api/Membre
-        public void Post(Membre membre)
+        public Membre Post(Membre membre)
         {
             return MembreDAO.Create(membre);
         }
@@ -32,7 +33,7 @@ namespace VisualGamesProjectVisual.Controllers
         {
             if (MembreDAO.Update(membre))
             {
-                return OK();
+                return Ok();
             }
             return BadRequest();
         }
@@ -40,9 +41,9 @@ namespace VisualGamesProjectVisual.Controllers
         // DELETE: api/Membre/5
         public IHttpActionResult Delete(int id)
         {
-            if (TodoDAO.Delete(id))
+            if (MembreDAO.Delete(id))
             {
-                return OK();
+                return Ok();
             }
             return BadRequest();
         }

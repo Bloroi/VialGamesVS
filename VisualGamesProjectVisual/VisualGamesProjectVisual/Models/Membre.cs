@@ -75,7 +75,7 @@ namespace VisualGamesProjectVisual.Models
 
         public Membre() { }
 
-        public Membre(string id, string username, string password, string nom, string prenom, string dateDeNaissance, string email, string tel, string localite, int cp, string adresse)
+        public Membre(int id, string username, string password, string nom, string prenom, string dateDeNaissance, string email, string tel, string localite, int cp, string adresse)
         {
             Id = id;
             Username = username;

@@ -57,4 +57,3 @@ namespace VisualGamesProjectVisual.Models
 
 	}
 }
-}
