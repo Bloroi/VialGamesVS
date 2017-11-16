@@ -10,10 +10,10 @@ namespace VisualGamesProjectVisual.Models
     public class ReservationEnCoursDAO
     {
         private static readonly string QUERY = "SELECT * FROM reservationEnCours";
-        private static readonly string GET = QUERY + " WHERE idReservation=#idReservation";
-        private static readonly string CREATE = "INSERT INTO reservationEnCours(date, dateLivraison, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@date, @dateLivraison, @idMembre, @idJeuVideo)";
+        private static readonly string GET = QUERY + " WHERE idReservation=@idReservation";
+        private static readonly string CREATE = "INSERT INTO reservationEnCours(dateReservation, dateLivraison, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@dateReservation, @dateLivraison, @idMembre, @idJeuVideo)";
         private static readonly string DELETE = "DELETE FROM reservationEnCours WHERE idReservation = @idReservation";
-        private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@date, dateLivraison=@dateLivraison, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
+        private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@dateReservation, dateLivraison=@dateLivraison, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
 
         public static List<ReservationEnCours> GetAllReservationEnCours()
         {
@@ -57,11 +57,11 @@ namespace VisualGamesProjectVisual.Models
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(CREATE, connection);
-                command.Parameters.AddWithValue("@date", reservationEnCours.Date);
+                command.Parameters.AddWithValue("@dateReservation", reservationEnCours.DateReservation);
                 command.Parameters.AddWithValue("@dateLivraison", reservationEnCours.DateLivraison);
                 command.Parameters.AddWithValue(@"idMembre", reservationEnCours.IdMembre);
                 command.Parameters.AddWithValue(@"idJeuVideo", reservationEnCours.IdJeuVideo);
-
+                
                 reservationEnCours.IdReservation= (int)command.ExecuteScalar();
             }
             return reservationEnCours;
@@ -89,7 +89,7 @@ namespace VisualGamesProjectVisual.Models
                 connection.Open();
                 SqlCommand command = new SqlCommand(UPDATE, connection);
                 command.Parameters.AddWithValue("@idReservation", reservationEnCours.IdReservation);
-                command.Parameters.AddWithValue("@date", reservationEnCours.Date);
+                command.Parameters.AddWithValue("@dateReservation", reservationEnCours.DateReservation);
                 command.Parameters.AddWithValue("@dateLivraison", reservationEnCours.DateLivraison);
                 command.Parameters.AddWithValue("@idMembre", reservationEnCours.IdMembre);
                 command.Parameters.AddWithValue("@idJeuVideo", reservationEnCours.IdJeuVideo);

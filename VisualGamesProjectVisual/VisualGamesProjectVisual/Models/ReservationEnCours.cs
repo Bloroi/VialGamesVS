@@ -13,7 +13,7 @@ namespace VisualGamesProjectVisual.Models
             set;
         }
 
-        public string Date
+        public string DateReservation
         {
             get;
             set;
@@ -41,16 +41,16 @@ namespace VisualGamesProjectVisual.Models
         {
         }
 
-        public ReservationEnCours(int idReservation, string date, string dateLivraison, int idMembre, int idJeuVideo)
+        public ReservationEnCours(int idReservation, string dateReservation, string dateLivraison, int idMembre, int idJeuVideo)
         {
             IdReservation = IdReservation;
-            Date = date;
+            DateReservation = dateReservation;
             DateLivraison = dateLivraison;
             IdMembre = idMembre;
             IdJeuVideo = idJeuVideo;
         }
 
-        public ReservationEnCours(string date, string dateLivraison, int idMembre, int idJeuVideo):this(0, date, dateLivraison, idMembre, idJeuVideo)
+        public ReservationEnCours(string dateReservation, string dateLivraison, int idMembre, int idJeuVideo):this(0, dateReservation, dateLivraison, idMembre, idJeuVideo)
         {
 
         }
