@@ -11,7 +11,7 @@ namespace VisualGamesProjectVisual.Models
     
     {
         private static readonly string QUERY = "SELECT * FROM membre";
-        private static readonly string GET = QUERY + " WHERE id=#id";
+        private static readonly string GET = QUERY + " WHERE id=@id";
         private static readonly string CREATE = "INSERT INTO membre(username, password, nom, prenom, dateDeNaissance, email, tel, localite, cp, adresse) OUTPUT INSERTED.ID VALUES (@username, @password, @nom, @prenom, @dateDeNaissance, @email, @tel, @localite, @cp, @adresse)";
         private static readonly string DELETE = "DELETE FROM membre WHERE id = @id";
         private static readonly string UPDATE = "UPDATE membre SET username = @username, password = @password, nom = @nom, prenom = @prenom, dateDeNaissance = @dateDeNaissance, emai=@email, tel = @tel, localite = @localite, cp = @cp, adresse = @adresse WHERE id = @id";
