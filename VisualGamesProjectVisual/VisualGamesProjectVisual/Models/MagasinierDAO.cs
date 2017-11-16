@@ -12,10 +12,10 @@ namespace VisualGamesProjectVisual.Models
 
 		private static readonly string QUERY = "SELECT * from Magasinier";
 		private static readonly string GET = QUERY + "WHERE id = @id";
-		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,email)" +
-			"OUTPUT INSERTED.id VALUES(@username,@password,@email)";
+		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,email,tel)" +
+			"OUTPUT INSERTED.id VALUES(@username,@password,@email,@tel)";
 		private static readonly string DELETE = "DELETE FROM Magasinier WHERE id=@id";
-		private static readonly string UPDATE = "UPDATE Magasinier SET nom = @username=username,@password = password,@email = email";
+		private static readonly string UPDATE = "UPDATE Magasinier SET nom = @username=username,@password = password,@email = email,@tel = tel";
 
 		public static List<Magasinier> getAllMagasinier()
 		{
