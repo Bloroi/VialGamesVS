@@ -39,7 +39,7 @@ namespace VisualGamesProjectVisual.Models
 		public Administrateur(int id, String username,String password,String email)
 		{
 			Id = id;
-			Username = Username;
+			Username = username;
 			Password = password;
 			Email = email;
 

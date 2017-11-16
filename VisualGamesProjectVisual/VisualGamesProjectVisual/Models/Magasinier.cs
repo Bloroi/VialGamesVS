@@ -25,18 +25,19 @@ namespace VisualGamesProjectVisual.Models
 			set;
 		}
 
-		public String Tel
-		{
-			get;
-			set;
-		}
-
 		public String Email
 		{
 			get;
 			set;
 		}
 
+		public String Tel
+		{
+			get;
+			set;
+		}
+
+		
 		public Magasinier()
 		{
 
@@ -45,11 +46,10 @@ namespace VisualGamesProjectVisual.Models
 		public Magasinier(int id, String username, String password, String email,String tel)
 		{
 			Id = id;
-			Username = Username;
+			Username = username;
 			Password = password;
 			Email = email;
 			Tel = tel;
-
 		}
 
 		public Magasinier(String username, String password, String email,String tel)
