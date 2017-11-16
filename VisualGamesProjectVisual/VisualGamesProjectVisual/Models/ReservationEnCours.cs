@@ -43,7 +43,7 @@ namespace VisualGamesProjectVisual.Models
 
         public ReservationEnCours(int idReservation, string dateReservation, string dateLivraison, int idMembre, int idJeuVideo)
         {
-            IdReservation = IdReservation;
+            IdReservation = idReservation;
             DateReservation = dateReservation;
             DateLivraison = dateLivraison;
             IdMembre = idMembre;

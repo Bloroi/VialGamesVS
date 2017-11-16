@@ -182,6 +182,7 @@
     <Compile Include="Controllers\JeuxvideoController.cs" />
     <Compile Include="Controllers\MagasinierController.cs" />
     <Compile Include="Controllers\MembreController.cs" />
+    <Compile Include="Controllers\ReservationFinieController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\ReservationEnCoursController.cs" />
     <Compile Include="Global.asax.cs">

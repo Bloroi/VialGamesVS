@@ -40,7 +40,7 @@ namespace VisualGamesProjectVisual.Models
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(GET, connection);
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@idReservation", id);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
