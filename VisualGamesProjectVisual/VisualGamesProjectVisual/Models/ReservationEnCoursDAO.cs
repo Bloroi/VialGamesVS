@@ -59,8 +59,8 @@ namespace VisualGamesProjectVisual.Models
                 SqlCommand command = new SqlCommand(CREATE, connection);
                 command.Parameters.AddWithValue("@date", reservationEnCours.Date);
                 command.Parameters.AddWithValue("@dateLivraison", reservationEnCours.DateLivraison);
-                command.Parameters.AddWithValue(@"", reservationEnCours.IdMembre);
-                command.Parameters.AddWithValue(@"", reservationEnCours.IdJeuVideo);
+                command.Parameters.AddWithValue(@"idMembre", reservationEnCours.IdMembre);
+                command.Parameters.AddWithValue(@"idJeuVideo", reservationEnCours.IdJeuVideo);
 
                 reservationEnCours.IdReservation= (int)command.ExecuteScalar();
             }
