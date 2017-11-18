@@ -14,7 +14,7 @@ namespace VialGamesVisual.Models
 			"OUTPUT INSERTED.id VALUES(@nom,@editeur,@types,@developpeur,@sortie,@genres,@theme,@prix,@description,@urlImage)";
 		private static readonly string DELETE = "DELETE FROM jeuxvideo WHERE id=@id";
 		private static readonly string UPDATE = "UPDATE jeuxvideo SET nom = @nom,editeur=@editeur,types=@types,developpeur=@developpeur,sortie=@sortie,genres=@genres," +
-			"theme=@theme,prix=@prix,description=@description,urlImage=@urlImage";
+			"theme=@theme,prix=@prix,description=@description,urlImage=@urlImage where id = @id";
 
 		public static List<Jeuxvideo> getAllJeuxvideo()
 		{
@@ -125,6 +125,8 @@ namespace VialGamesVisual.Models
 				command.Parameters.AddWithValue("@prix", jv.Prix);
 				command.Parameters.AddWithValue("@description", jv.Description);
 				command.Parameters.AddWithValue("@urlImage", jv.UrlImage);
+
+				command.Parameters.AddWithValue("@id", jv.Id);
 
 				aEteModifie = command.ExecuteNonQuery() != 0; // elle envoit le nombre de lignes modifiées avec ma commande
 
