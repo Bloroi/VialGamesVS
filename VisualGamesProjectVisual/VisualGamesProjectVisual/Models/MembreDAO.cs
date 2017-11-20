@@ -108,7 +108,9 @@ namespace VisualGamesProjectVisual.Models
                 command.Parameters.AddWithValue("@cp", membre.Cp);
                 command.Parameters.AddWithValue("@adresse", membre.Adresse);
 
-                aEteModifie = command.ExecuteNonQuery() != 0;
+				command.Parameters.AddWithValue("@id", membre.Id);
+
+				aEteModifie = command.ExecuteNonQuery() != 0;
             }
             return aEteModifie;
         }
