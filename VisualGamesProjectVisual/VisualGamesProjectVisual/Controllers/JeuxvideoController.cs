@@ -11,7 +11,6 @@ namespace VialGamesVisual.Controllers
 	public class JeuxvideoController : ApiController
 	{
         //http//127.0.0.1:8080/api/jeuxvideo
-        [JwtAuthentication]
         public IEnumerable<Jeuxvideo> Get()
 		{
 			return JeuxvideoDAO.getAllJeuxvideo();
