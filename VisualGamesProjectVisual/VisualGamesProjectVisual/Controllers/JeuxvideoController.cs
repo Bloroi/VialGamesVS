@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using VialGamesVisual.Models;
+using VisualGamesProjectVisual.Filters;
 
 namespace VialGamesVisual.Controllers
 {
 	public class JeuxvideoController : ApiController
 	{
-		//http//127.0.0.1:8080/api/jeuxvideo
-		public IEnumerable<Jeuxvideo> Get()
+        //http//127.0.0.1:8080/api/jeuxvideo
+        public IEnumerable<Jeuxvideo> Get()
 		{
 			return JeuxvideoDAO.getAllJeuxvideo();
 
