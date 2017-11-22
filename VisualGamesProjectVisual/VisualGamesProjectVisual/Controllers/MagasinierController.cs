@@ -28,27 +28,27 @@ namespace VisualGamesProjectVisual.Controllers
 			return MagasinierDAO.Create(mag);
 		}
 
-		public IHttpActionResult Put(Magasinier mag)// update = Put
+		public string Put(Magasinier mag)// update = Put
 		{
 			if (MagasinierDAO.Update(mag))
 			{
-				return Ok();
+				return "OK";
 
 			}
 
-			return BadRequest();
+			return "KO";
 		}
 
 
-		public IHttpActionResult Delete(int id)
+		public string Delete(int id)
 		{
 			if (MagasinierDAO.Delete(id))
 			{
-				return Ok();
+				return "OK";
 
 			}
 
-			return BadRequest();
+			return"KO";
 		}
 	
 }

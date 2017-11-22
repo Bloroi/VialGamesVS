@@ -11,11 +11,11 @@ namespace VisualGamesProjectVisual.Models
 	{
 
 		private static readonly string QUERY = "SELECT * from administrateur";
-		private static readonly string GET = QUERY + "WHERE id = @id";
+		private static readonly string GET = QUERY + " WHERE id = @id";
 		private static readonly string CREATE = "INSERT INTO administrateur(username,password,email)" +
 			"OUTPUT INSERTED.id VALUES(@username,@password,@email)";
 		private static readonly string DELETE = "DELETE FROM administrateur WHERE id=@id";
-		private static readonly string UPDATE = "UPDATE administrateur SET nom = username=@username,password = @password,email = @email where id = @id";
+		private static readonly string UPDATE = "UPDATE administrateur SET username=@username,password = @password,email = @email where id = @id";
 
 		public static List<Administrateur> getAllAdministrateur()
 		{

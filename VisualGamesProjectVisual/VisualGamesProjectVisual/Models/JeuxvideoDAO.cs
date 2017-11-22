@@ -9,12 +9,12 @@ namespace VialGamesVisual.Models
 	public class JeuxvideoDAO
 	{
 		private static readonly string QUERY = "SELECT * from jeuxvideo";
-		private static readonly string GET = QUERY + "WHERE id = @id";
-		private static readonly string CREATE = "INSERT INTO jeuxvideo(nom,editeur,types,developpeur,sortie,genres,theme,prix,description,urlImage)" +
-			"OUTPUT INSERTED.id VALUES(@nom,@editeur,@types,@developpeur,@sortie,@genres,@theme,@prix,@description,@urlImage)";
+		private static readonly string GET = QUERY + " WHERE id = @id";
+		private static readonly string CREATE = "INSERT INTO jeuxvideo(nom,editeur,types,developpeur,sortie,genres,theme,prix,description,urlImage,stock)" +
+			"OUTPUT INSERTED.id VALUES(@nom,@editeur,@types,@developpeur,@sortie,@genres,@theme,@prix,@description,@urlImage,@stock)";
 		private static readonly string DELETE = "DELETE FROM jeuxvideo WHERE id=@id";
 		private static readonly string UPDATE = "UPDATE jeuxvideo SET nom = @nom,editeur=@editeur,types=@types,developpeur=@developpeur,sortie=@sortie,genres=@genres," +
-			"theme=@theme,prix=@prix,description=@description,urlImage=@urlImage where id = @id";
+			"theme=@theme,prix=@prix,description=@description,urlImage=@urlImage,stock=@stock where id = @id";
 
 		public static List<Jeuxvideo> getAllJeuxvideo()
 		{
@@ -41,7 +41,7 @@ namespace VialGamesVisual.Models
 					//jvs.Add(new Jeuxvideo(reader.GetInt32(0),reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5),
 					//reader.GetString(6), reader.GetString(7), reader.GetFloat(8), reader.GetString(9)));
 					jvs.Add(new Jeuxvideo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5),
-						reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9),reader.GetString(10)));
+						reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9),reader.GetString(10),reader.GetDecimal(11)));
 				}
 
 			}
@@ -61,7 +61,7 @@ namespace VialGamesVisual.Models
 				if (reader.Read())
 				{
 					jv = new Jeuxvideo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),
-						reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9), reader.GetString(10));
+						reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9), reader.GetString(10), reader.GetDecimal(11));
 				}
 			}
 
@@ -85,6 +85,7 @@ namespace VialGamesVisual.Models
 				command.Parameters.AddWithValue("@prix", jv.Prix);
 				command.Parameters.AddWithValue("@description", jv.Description);
 				command.Parameters.AddWithValue("@urlImage", jv.UrlImage);
+				command.Parameters.AddWithValue("@stock", jv.Stock);
 
 				jv.Id = (int)command.ExecuteScalar(); //Revnoyer la valeur de l'intersection de la première ligne première colonne
 
@@ -125,6 +126,7 @@ namespace VialGamesVisual.Models
 				command.Parameters.AddWithValue("@prix", jv.Prix);
 				command.Parameters.AddWithValue("@description", jv.Description);
 				command.Parameters.AddWithValue("@urlImage", jv.UrlImage);
+				command.Parameters.AddWithValue("@stock", jv.Stock);
 
 				command.Parameters.AddWithValue("@id", jv.Id);
 

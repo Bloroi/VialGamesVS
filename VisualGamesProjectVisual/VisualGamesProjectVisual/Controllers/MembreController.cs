@@ -29,23 +29,23 @@ namespace VisualGamesProjectVisual.Controllers
         }
 
         // PUT: api/Membre/5
-        public IHttpActionResult Put(Membre membre)
+        public string Put(Membre membre)
         {
             if (MembreDAO.Update(membre))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "KO";
         }
 
         // DELETE: api/Membre/5
-        public IHttpActionResult Delete(int id)
+        public string Delete(int id)
         {
             if (MembreDAO.Delete(id))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "KO";
         }
     }
 }

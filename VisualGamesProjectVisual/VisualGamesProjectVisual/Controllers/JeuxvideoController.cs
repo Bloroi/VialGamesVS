@@ -26,27 +26,27 @@ namespace VialGamesVisual.Controllers
 			return JeuxvideoDAO.Create(jv);
 		}
 
-		public IHttpActionResult Put(Jeuxvideo jv)// update = Put
+		public string Put(Jeuxvideo jv)// update = Put
 		{
 			if (JeuxvideoDAO.Update(jv))
 			{
-				return Ok();
+				return "OK";
 
 			}
 
-			return BadRequest();
+			return "KO";
 		}
 
 
-		public IHttpActionResult Delete(int id)
+		public string Delete(int id)
 		{
 			if (JeuxvideoDAO.Delete(id))
 			{
-				return Ok();
+				return "OK";
 
 			}
 
-			return BadRequest();
+			return "KO";
 		}
 	}
 }

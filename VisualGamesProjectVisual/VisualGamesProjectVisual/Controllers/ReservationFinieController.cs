@@ -29,23 +29,23 @@ namespace VisualGamesProjectVisual.Controllers
         }
 
         // PUT api/<controller>/5
-        public IHttpActionResult Put(ReservationFinie reserv)
+        public string Put(ReservationFinie reserv)
         {
             if (ReservationFinieDAO.Update(reserv))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "KO";
         }
 
         // DELETE api/<controller>/5
-        public IHttpActionResult Delete(int id)
+        public string Delete(int id)
         {
             if (ReservationFinieDAO.Delete(id))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "KO";
         }
     }
 }

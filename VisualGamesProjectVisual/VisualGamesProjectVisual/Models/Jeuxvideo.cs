@@ -73,12 +73,19 @@ namespace VialGamesVisual.Models
 			set;
 		}
 
+		public decimal Stock
+		{
+			get;
+			set;
+		}
+
+
 		public Jeuxvideo()
 		{
 
 		}
 
-		public Jeuxvideo(int id, String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,String urlImage)
+		public Jeuxvideo(int id, String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,String urlImage,decimal stock)
 		{
 			Id = id;
 			Nom = nom;
@@ -91,13 +98,14 @@ namespace VialGamesVisual.Models
 			Prix = prix;
 			Description = description;
 			UrlImage = urlImage;
+			Stock = stock;
 
 		}
 
-		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,String urlImage)
-			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description,urlImage) { }
+		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,String urlImage,decimal stock)
+			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description,urlImage,stock) { }
 
-		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description)
-			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description,"0") { }
+		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,decimal stock)
+			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description, "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",stock) { }
 	}
 }

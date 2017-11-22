@@ -28,27 +28,27 @@ namespace VisualGamesProjectVisual.Controllers
 			return AdministrateurDAO.Create(a);
 		}
 
-		public IHttpActionResult Put(Administrateur a)// update = Put
+		public string Put(Administrateur a)// update = Put
 		{
 			if (AdministrateurDAO.Update(a))
 			{
-				return Ok();
+				return "OK";
 
 			}
 
-			return BadRequest();
+			return "KO";
 		}
 
 
-		public IHttpActionResult Delete(int id)
+		public string Delete(int id)
 		{
 			if (AdministrateurDAO.Delete(id))
 			{
-				return Ok();
+				return "OK";
 
 			}
 
-			return BadRequest();
+			return "KO";
 		}
 	}
 }

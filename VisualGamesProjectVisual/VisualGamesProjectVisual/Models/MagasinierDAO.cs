@@ -11,7 +11,7 @@ namespace VisualGamesProjectVisual.Models
 	{
 
 		private static readonly string QUERY = "SELECT * from Magasinier";
-		private static readonly string GET = QUERY + "WHERE id = @id";
+		private static readonly string GET = QUERY + " WHERE id = @id";
 		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,tel,email)" +
 			"OUTPUT INSERTED.id VALUES(@username,@password,@tel,@email)";
 		private static readonly string DELETE = "DELETE FROM Magasinier WHERE id=@id";
