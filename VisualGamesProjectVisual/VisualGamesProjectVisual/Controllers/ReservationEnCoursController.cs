@@ -13,13 +13,13 @@ namespace VisualGamesProjectVisual.Controllers
         // GET api/<controller>
         public IEnumerable<ReservationEnCours> Get()
         {
-            return ReservationEnCoursDAO.GetAllReservationEnCours();
+             return ReservationEnCoursDAO.GetAllReservationEnCours();
         }
 
         // GET api/<controller>/5
-        public ReservationEnCours Get(int id)
+        public IEnumerable<ReservationEnCours> Get(int id)
         {
-            return ReservationEnCoursDAO.Get(id);
+            return ReservationEnCoursDAO.GetAllReservationEnCours(id);
         }
 
         // POST api/<controller>

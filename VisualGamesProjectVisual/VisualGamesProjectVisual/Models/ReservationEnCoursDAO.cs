@@ -11,6 +11,7 @@ namespace VisualGamesProjectVisual.Models
     {
         private static readonly string QUERY = "SELECT * FROM reservationEnCours";
         private static readonly string GET = QUERY + " WHERE idReservation=@idReservation";
+        private static readonly string GETMEMBRE = QUERY + " WHERE idMembre=@idMembre";
         private static readonly string CREATE = "INSERT INTO reservationEnCours(dateReservation, dateLivraison, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@dateReservation, @dateLivraison, @idMembre, @idJeuVideo)";
         private static readonly string DELETE = "DELETE FROM reservationEnCours WHERE idReservation = @idReservation";
         private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@dateReservation, dateLivraison=@dateLivraison, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
@@ -23,6 +24,24 @@ namespace VisualGamesProjectVisual.Models
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(QUERY, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4)));
+                }
+            }
+            return reservationsEnCours;
+        }
+
+        public static List<ReservationEnCours> GetAllReservationEnCours(int idMembre)
+        {
+            List<ReservationEnCours> reservationsEnCours = new List<ReservationEnCours>();
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETMEMBRE, connection);
+                command.Parameters.AddWithValue("@idMembre", idMembre);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
