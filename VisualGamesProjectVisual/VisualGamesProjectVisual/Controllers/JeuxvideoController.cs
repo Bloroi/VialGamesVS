@@ -17,6 +17,12 @@ namespace VialGamesVisual.Controllers
 
 		}
 
+		public IEnumerable<Jeuxvideo> GetVisible(bool visible)
+		{
+			return JeuxvideoDAO.getAllJeuxvideo(visible);
+		}
+
+
 		public Jeuxvideo Get(int id)
 		{
 			return JeuxvideoDAO.Get(id);
