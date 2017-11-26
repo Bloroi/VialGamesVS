@@ -48,7 +48,26 @@ namespace VialGamesVisual.Models
 			return jvs;
 		}
 
-		public static Jeuxvideo Get(int id)
+        public static List<Jeuxvideo> getAllJeuxvideo(Boolean bool)
+        {
+            List<Jeuxvideo> jvs = new List<Jeuxvideo>();
+
+            using (SqlConnection connection = Database.GetConnection())
+            { //Comme un try , ferme automatiquement la connection
+                connection.Open();
+                SqlCommand command = new SqlCommand(QUERY, connection);
+                SqlDataReader reader = command.ExecuteReader(); //Contient les différents records que la bd a envoyé
+                while (reader.Read())
+                {
+                    jvs.Add(new Jeuxvideo(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5),
+                        reader.GetString(6), reader.GetString(7), reader.GetDecimal(8), reader.GetString(9), reader.GetString(10), reader.GetDecimal(11)));
+                }
+
+            }
+            return jvs;
+        }
+
+        public static Jeuxvideo Get(int id)
 		{
 			Jeuxvideo jv = null;
 

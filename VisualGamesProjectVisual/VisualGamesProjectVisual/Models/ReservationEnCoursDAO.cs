@@ -10,7 +10,7 @@ namespace VisualGamesProjectVisual.Models
     public class ReservationEnCoursDAO
     {
         private static readonly string QUERY = "SELECT * FROM reservationEnCours";
-        private static readonly string GET = QUERY + " WHERE idReservation=@idReservation";
+        private static readonly string GET = QUERY + " WHERE id=@id";
         private static readonly string GETMEMBRE = QUERY + " WHERE idMembre=@idMembre";
         private static readonly string CREATE = "INSERT INTO reservationEnCours(dateReservation, dateLivraison, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@dateReservation, @dateLivraison, @idMembre, @idJeuVideo)";
         private static readonly string DELETE = "DELETE FROM reservationEnCours WHERE idReservation = @idReservation";
@@ -33,7 +33,7 @@ namespace VisualGamesProjectVisual.Models
             return reservationsEnCours;
         }
 
-        public static List<ReservationEnCours> GetAllReservationEnCours(int idMembre)
+        public static List<ReservationEnCours> GetAllReservationEnCoursMembre(int idMembre)
         {
             List<ReservationEnCours> reservationsEnCours = new List<ReservationEnCours>();
 
@@ -50,6 +50,24 @@ namespace VisualGamesProjectVisual.Models
             }
             return reservationsEnCours;
         }
+
+        public static List<ReservationEnCours> GetAllReservationEnCours(int idReserv)
+        {
+            List<ReservationEnCours> reservationsEnCours = new List<ReservationEnCours>();
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GET, connection);
+                command.Parameters.AddWithValue("@id", idReserv);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4)));
+                }
+            }
+            return reservationsEnCours;
+        }  
 
         public static ReservationEnCours Get(int id)
         {

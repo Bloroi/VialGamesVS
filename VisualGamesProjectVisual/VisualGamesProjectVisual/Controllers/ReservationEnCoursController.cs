@@ -17,9 +17,16 @@ namespace VisualGamesProjectVisual.Controllers
         }
 
         // GET api/<controller>/5
-        public IEnumerable<ReservationEnCours> Get(int id)
+        public IEnumerable<ReservationEnCours> Get(int type, int id)
         {
-            return ReservationEnCoursDAO.GetAllReservationEnCours(id);
+            if (type == 0)
+            {
+                return ReservationEnCoursDAO.GetAllReservationEnCours(id);
+            }
+            else
+            {
+                return ReservationEnCoursDAO.GetAllReservationEnCoursMembre(id);
+            }
         }
 
         // POST api/<controller>
