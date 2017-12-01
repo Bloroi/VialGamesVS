@@ -25,13 +25,15 @@ namespace VisualGamesProjectVisual.Models
 			set;
 		}
 
-		public String Email
+		public String Tel
 		{
 			get;
 			set;
 		}
 
-		public String Tel
+
+
+		public String Email
 		{
 			get;
 			set;
@@ -43,7 +45,7 @@ namespace VisualGamesProjectVisual.Models
 
 		}
 
-		public Magasinier(int id, String username, String password, String email,String tel)
+		public Magasinier(int id, String username, String password, String tel,String email)
 		{
 			Id = id;
 			Username = username;
@@ -52,8 +54,8 @@ namespace VisualGamesProjectVisual.Models
 			Tel = tel;
 		}
 
-		public Magasinier(String username, String password, String email,String tel)
-			: this (0, username,password,email,tel) { }
+		public Magasinier(String username, String password, String tel,String email)
+			: this (0, username,password,tel,email) { }
 
 	}
 }

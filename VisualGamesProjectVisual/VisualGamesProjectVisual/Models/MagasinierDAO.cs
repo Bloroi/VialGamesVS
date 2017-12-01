@@ -15,7 +15,7 @@ namespace VisualGamesProjectVisual.Models
 		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,tel,email)" +
 			"OUTPUT INSERTED.id VALUES(@username,@password,@tel,@email)";
 		private static readonly string DELETE = "DELETE FROM Magasinier WHERE id=@id";
-		private static readonly string UPDATE = "UPDATE Magasinier SET nom = username=@username,password = @password,tel = @tel,email = @email where id = @id";
+		private static readonly string UPDATE = "UPDATE Magasinier SET username=@username,password = @password,tel = @tel,email = @email where id = @id";
 
 		public static List<Magasinier> getAllMagasinier()
 		{
