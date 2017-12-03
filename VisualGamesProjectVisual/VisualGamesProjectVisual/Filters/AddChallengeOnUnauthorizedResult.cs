@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace VisualGamesProjectVisual.Filters
+namespace JWT.Filters
 {
     public class AddChallengeOnUnauthorizedResult : IHttpActionResult
     {

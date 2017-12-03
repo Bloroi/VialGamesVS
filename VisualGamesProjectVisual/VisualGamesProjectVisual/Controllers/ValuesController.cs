@@ -1,5 +1,5 @@
-﻿using System.Web.Http;
-using VisualGamesProjectVisual.Filters;
+﻿using JWT.Filters;
+using System.Web.Http;
 
 namespace JWT.Controllers
 {

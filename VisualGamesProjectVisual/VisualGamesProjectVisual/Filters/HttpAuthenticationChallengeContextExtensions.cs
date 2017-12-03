@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 using System.Web.Http.Filters;
 
-namespace VisualGamesProjectVisual.Filters
+namespace JWT.Filters
 {
     public static class HttpAuthenticationChallengeContextExtension
     {

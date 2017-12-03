@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Web.Http;
-using VisualGamesProjectVisual.Filters;
+using VisualGamesProjectVisual.Models;
+using WebApi.Jwt;
 
 namespace VisualGamesProjectVisual.Controllers
 {
@@ -8,20 +10,46 @@ namespace VisualGamesProjectVisual.Controllers
     {
         // THis is naive endpoint for demo, it should use Basic authentication to provdie token or POST request
         [AllowAnonymous]
-        public string Get(string username, string password)
+        public IEnumerable<string> Get(string username, string password)
         {
-            if (CheckUser(username, password))
+            List<string> list = new List<string>();
+            string check = CheckUser(username, password);
+            if (check != "0")
             {
-                return JwtManager.GenerateToken(username);
+                list.Add(check);
+                list.Add(JwtManager.GenerateToken(username));
             }
-
-            throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            else
+            {
+                list.Add("0");
+            }
+            return list;
         }
 
-        public bool CheckUser(string username, string password)
+        public string CheckUser(string username, string password)
         {
-            // you should authenticate the user. In this example we are goint to return always true
-            return true;
+            if (MembreDAO.getConnection(username, password))
+            {
+                return "1" ;
+            }
+            else
+            {
+                if (AdministrateurDAO.getConnection(username, password))
+                {
+                    return "2";
+                }
+                else
+                {
+                    if (MagasinierDAO.getConnection(username, password))
+                    {
+                        return "3";
+                    }
+                    else
+                    {
+                        return "0";
+                    }
+                }
+            }
         }
     }
 }

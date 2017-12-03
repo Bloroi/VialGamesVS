@@ -12,7 +12,8 @@ namespace VisualGamesProjectVisual.Models
 
 		private static readonly string QUERY = "SELECT * from Magasinier";
 		private static readonly string GET = QUERY + " WHERE id = @id";
-		private static readonly string CREATE = "INSERT INTO Magasinier(username,password,tel,email)" +
+        private static readonly string GETCONENCTION = QUERY + " WHERE username=@username AND password=@password";
+        private static readonly string CREATE = "INSERT INTO Magasinier(username,password,tel,email)" +
 			"OUTPUT INSERTED.id VALUES(@username,@password,@tel,@email)";
 		private static readonly string DELETE = "DELETE FROM Magasinier WHERE id=@id";
 		private static readonly string UPDATE = "UPDATE Magasinier SET nom = username=@username,password = @password,tel = @tel,email = @email where id = @id";
@@ -35,7 +36,33 @@ namespace VisualGamesProjectVisual.Models
 			return listM;
 		}
 
-		public static Magasinier Get(int id)
+        public static Boolean getConnection(string username, string password)
+        {
+            List<Magasinier> admins = new List<Magasinier>();
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETCONENCTION, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    admins.Add(new Magasinier(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                }
+            }
+            if (admins.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static Magasinier Get(int id)
 		{
 			Magasinier m = null;
 

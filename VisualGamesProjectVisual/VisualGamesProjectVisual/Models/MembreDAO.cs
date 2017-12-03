@@ -12,6 +12,7 @@ namespace VisualGamesProjectVisual.Models
     {
         private static readonly string QUERY = "SELECT * FROM membre";
         private static readonly string GET = QUERY + " WHERE id=@id";
+        private static readonly string GETCONENCTION = QUERY + " WHERE username=@username AND password=@password";
         private static readonly string CREATE = "INSERT INTO membre(username, password, nom, prenom, dateDeNaissance, email, tel, localite, cp, adresse) OUTPUT INSERTED.ID VALUES (@username, @password, @nom, @prenom, @dateDeNaissance, @email, @tel, @localite, @cp, @adresse)";
         private static readonly string DELETE = "DELETE FROM membre WHERE id = @id";
         private static readonly string UPDATE = "UPDATE membre SET username = @username, password = @password, nom = @nom, prenom = @prenom, dateDeNaissance = @dateDeNaissance, emai=@email, tel = @tel, localite = @localite, cp = @cp, adresse = @adresse WHERE id = @id";
@@ -32,6 +33,53 @@ namespace VisualGamesProjectVisual.Models
             }
 
             return membres;
+        }
+
+        public static Boolean getConnection(string username, string password)
+        {
+            List<Membre> membres = new List<Membre>();
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETCONENCTION, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    membres.Add(new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetInt32(9), reader.GetString(10)));
+                }
+            }
+
+            if(membres.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static Membre getMembre(string username, string password)
+        {
+            Membre membre = null;
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETCONENCTION, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    membre = new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetInt32(9), reader.GetString(10));
+
+                }
+            }
+            return membre;
         }
 
         public static Membre Get(int id)

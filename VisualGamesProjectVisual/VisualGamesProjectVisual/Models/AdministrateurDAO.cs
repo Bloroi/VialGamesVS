@@ -12,7 +12,8 @@ namespace VisualGamesProjectVisual.Models
 
 		private static readonly string QUERY = "SELECT * from administrateur";
 		private static readonly string GET = QUERY + " WHERE id = @id";
-		private static readonly string CREATE = "INSERT INTO administrateur(username,password,email)" +
+        private static readonly string GETCONENCTION = QUERY + " WHERE username=@username AND password=@password";
+        private static readonly string CREATE = "INSERT INTO administrateur(username,password,email)" +
 			"OUTPUT INSERTED.id VALUES(@username,@password,@email)";
 		private static readonly string DELETE = "DELETE FROM administrateur WHERE id=@id";
 		private static readonly string UPDATE = "UPDATE administrateur SET username=@username,password = @password,email = @email where id = @id";
@@ -35,7 +36,33 @@ namespace VisualGamesProjectVisual.Models
 			return listA;
 		}
 
-		public static Administrateur Get(int id)
+        public static Boolean getConnection(string username, string password)
+        {
+            List<Administrateur> admins = new List<Administrateur>();
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETCONENCTION, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    admins.Add(new Administrateur(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3)));
+                }
+            }
+            if (admins.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static Administrateur Get(int id)
 		{
 			Administrateur a = null;
 

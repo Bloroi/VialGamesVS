@@ -1,12 +1,15 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
+using WebApi.Jwt;
 
-namespace VisualGamesProjectVisual.Filters
+namespace JWT.Filters
 {
     public class JwtAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
@@ -25,6 +28,7 @@ namespace VisualGamesProjectVisual.Filters
             /*
             if (authorization == null || authorization.Scheme != "Bearer")
                 return;
+
             if (string.IsNullOrEmpty(authorization.Parameter))
             {
                 context.ErrorResult = new AuthenticationFailureResult("Missing Jwt Token", request);

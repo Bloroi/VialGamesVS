@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JWT.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,12 +12,14 @@ namespace VisualGamesProjectVisual.Controllers
     public class ReservationEnCoursController : ApiController
     {
         // GET api/<controller>
+        [JwtAuthentication]
         public IEnumerable<ReservationEnCours> Get()
         {
              return ReservationEnCoursDAO.GetAllReservationEnCours();
         }
 
         // GET api/<controller>/5
+        [JwtAuthentication]
         public IEnumerable<ReservationEnCours> Get(int type, int id)
         {
             if (type == 0)

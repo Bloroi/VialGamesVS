@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using VisualGamesProjectVisual.Filters;
 using VisualGamesProjectVisual.Models;
 
 namespace VisualGamesProjectVisual.Controllers
@@ -21,6 +20,11 @@ namespace VisualGamesProjectVisual.Controllers
         public Membre Get(int id)
         {
             return MembreDAO.Get(id);
+        }
+
+        public Membre Get(string username, string password)
+        {
+            return MembreDAO.getMembre(username, password);
         }
 
         // POST: api/Membre

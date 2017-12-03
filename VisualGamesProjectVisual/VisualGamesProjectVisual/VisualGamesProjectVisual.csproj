@@ -225,12 +225,12 @@
     <Compile Include="Controllers\ReservationEnCoursController.cs" />
     <Compile Include="Filters\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Filters\AuthenticationFailureResult.cs" />
-    <Compile Include="Filters\HttpAuthenticationChallengeContextExtension.cs" />
+    <Compile Include="Filters\HttpAuthenticationChallengeContextExtensions.cs" />
     <Compile Include="Filters\JwtAuthenticationAttribute.cs" />
-    <Compile Include="Filters\JwtManager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JwtManager.cs" />
     <Compile Include="Models\Administrateur.cs" />
     <Compile Include="Models\AdministrateurDAO.cs" />
     <Compile Include="Models\Magasinier.cs" />

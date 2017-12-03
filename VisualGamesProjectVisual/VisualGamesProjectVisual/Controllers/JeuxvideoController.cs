@@ -1,39 +1,41 @@
-﻿using System;
+﻿using JWT.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using VialGamesVisual.Models;
-using VisualGamesProjectVisual.Filters;
+
 
 namespace VialGamesVisual.Controllers
 {
 	public class JeuxvideoController : ApiController
 	{
-        //http//127.0.0.1:8080/api/jeuxvideo
+        [JwtAuthentication]
         public IEnumerable<Jeuxvideo> Get()
 		{
 			return JeuxvideoDAO.getAllJeuxvideo();
 
 		}
 
-		public IEnumerable<Jeuxvideo> GetVisible(bool visible)
+        [JwtAuthentication]
+        public IEnumerable<Jeuxvideo> GetVisible(bool visible)
 		{
 			return JeuxvideoDAO.getAllJeuxvideo(visible);
 		}
-
-
-		public Jeuxvideo Get(int id)
+        
+        public Jeuxvideo Get(int id)
 		{
 			return JeuxvideoDAO.Get(id);
 		}
 
-		public Jeuxvideo Post(Jeuxvideo jv)
+        [JwtAuthentication]
+        public Jeuxvideo Post(Jeuxvideo jv)
 		{
 			return JeuxvideoDAO.Create(jv);
 		}
-
-		public string Put(Jeuxvideo jv)// update = Put
+        
+        public string Put(Jeuxvideo jv)// update = Put
 		{
 			if (JeuxvideoDAO.Update(jv))
 			{
@@ -43,9 +45,8 @@ namespace VialGamesVisual.Controllers
 
 			return "KO";
 		}
-
-
-		public string Delete(int id)
+        
+        public string Delete(int id)
 		{
 			if (JeuxvideoDAO.Delete(id))
 			{
