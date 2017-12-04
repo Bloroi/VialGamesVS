@@ -17,8 +17,8 @@ namespace VialGamesVisual.Controllers
 			return JeuxvideoDAO.getAllJeuxvideo();
 
 		}
+        
 
-        [JwtAuthentication]
         public IEnumerable<Jeuxvideo> GetVisible(bool visible)
 		{
 			return JeuxvideoDAO.getAllJeuxvideo(visible);
