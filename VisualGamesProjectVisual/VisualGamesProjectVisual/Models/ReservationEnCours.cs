@@ -25,7 +25,19 @@ namespace VisualGamesProjectVisual.Models
             set;
         }
 
-        public int IdMembre
+		public decimal PrixAchat
+		{
+			get;
+			set;
+		}
+
+		public bool Etat
+		{
+			get;
+			set;
+		}
+
+		public int IdMembre
         {
             get;
             set;
@@ -41,16 +53,18 @@ namespace VisualGamesProjectVisual.Models
         {
         }
 
-        public ReservationEnCours(int idReservation, string dateReservation, string dateLivraison, int idMembre, int idJeuVideo)
+        public ReservationEnCours(int idReservation, string dateReservation, string dateLivraison, decimal prixAchat,bool etat, int idMembre, int idJeuVideo)
         {
             IdReservation = idReservation;
             DateReservation = dateReservation;
             DateLivraison = dateLivraison;
+			PrixAchat = prixAchat;
+			Etat = etat;
             IdMembre = idMembre;
             IdJeuVideo = idJeuVideo;
         }
 
-        public ReservationEnCours(string dateReservation, string dateLivraison, int idMembre, int idJeuVideo):this(0, dateReservation, dateLivraison, idMembre, idJeuVideo)
+        public ReservationEnCours(string dateReservation, string dateLivraison, decimal prixAchat, bool etat, int idMembre, int idJeuVideo):this(0, dateReservation, dateLivraison, prixAchat, etat, idMembre, idJeuVideo)
         {
 
         }

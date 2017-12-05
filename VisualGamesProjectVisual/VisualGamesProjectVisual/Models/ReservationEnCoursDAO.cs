@@ -12,9 +12,9 @@ namespace VisualGamesProjectVisual.Models
         private static readonly string QUERY = "SELECT * FROM reservationEnCours";
         private static readonly string GET = QUERY + " WHERE id=@id";
         private static readonly string GETMEMBRE = QUERY + " WHERE idMembre=@idMembre";
-        private static readonly string CREATE = "INSERT INTO reservationEnCours(dateReservation, dateLivraison, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@dateReservation, @dateLivraison, @idMembre, @idJeuVideo)";
+        private static readonly string CREATE = "INSERT INTO reservationEnCours(dateReservation, dateLivraison, prixAchat, etat, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@dateReservation, @dateLivraison, @prixAchat, @etat, @idMembre, @idJeuVideo)";
         private static readonly string DELETE = "DELETE FROM reservationEnCours WHERE idReservation = @idReservation";
-        private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@dateReservation, dateLivraison=@dateLivraison, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
+        private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@dateReservation, dateLivraison=@dateLivraison, prixAchat=@prixAchat,etat=@etat, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
 
         public static List<ReservationEnCours> GetAllReservationEnCours()
         {
@@ -27,7 +27,7 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4)));
+                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),reader.GetDecimal(3),reader.GetBoolean(4), reader.GetInt32(5), reader.GetInt32(6)));
                 }
             }
             return reservationsEnCours;
@@ -45,7 +45,7 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4)));
+                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetBoolean(4), reader.GetInt32(5), reader.GetInt32(6)));
                 }
             }
             return reservationsEnCours;
@@ -63,7 +63,7 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4)));
+                    reservationsEnCours.Add(new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetBoolean(4), reader.GetInt32(5), reader.GetInt32(6)));
                 }
             }
             return reservationsEnCours;
@@ -81,7 +81,7 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    reserv = new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4));
+                    reserv = new ReservationEnCours(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetBoolean(4), reader.GetInt32(5), reader.GetInt32(6));
 
                 }
             }
@@ -96,7 +96,9 @@ namespace VisualGamesProjectVisual.Models
                 SqlCommand command = new SqlCommand(CREATE, connection);
                 command.Parameters.AddWithValue("@dateReservation", reservationEnCours.DateReservation);
                 command.Parameters.AddWithValue("@dateLivraison", reservationEnCours.DateLivraison);
-                command.Parameters.AddWithValue(@"idMembre", reservationEnCours.IdMembre);
+				command.Parameters.AddWithValue("@prixAchat", reservationEnCours.PrixAchat);
+				command.Parameters.AddWithValue("@etat", reservationEnCours.Etat);
+				command.Parameters.AddWithValue(@"idMembre", reservationEnCours.IdMembre);
                 command.Parameters.AddWithValue(@"idJeuVideo", reservationEnCours.IdJeuVideo);
                 
                 reservationEnCours.IdReservation= (int)command.ExecuteScalar();
@@ -128,7 +130,9 @@ namespace VisualGamesProjectVisual.Models
                 command.Parameters.AddWithValue("@idReservation", reservationEnCours.IdReservation);
                 command.Parameters.AddWithValue("@dateReservation", reservationEnCours.DateReservation);
                 command.Parameters.AddWithValue("@dateLivraison", reservationEnCours.DateLivraison);
-                command.Parameters.AddWithValue("@idMembre", reservationEnCours.IdMembre);
+				command.Parameters.AddWithValue("@prixAchat", reservationEnCours.PrixAchat);
+				command.Parameters.AddWithValue("@etat", reservationEnCours.Etat);
+				command.Parameters.AddWithValue("@idMembre", reservationEnCours.IdMembre);
                 command.Parameters.AddWithValue("@idJeuVideo", reservationEnCours.IdJeuVideo);
 
                 aEteModifie = command.ExecuteNonQuery() != 0;
