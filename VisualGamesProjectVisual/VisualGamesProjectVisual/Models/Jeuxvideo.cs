@@ -113,5 +113,8 @@ namespace VialGamesVisual.Models
 
 		public Jeuxvideo(String nom, String editeur, String types, String developpeur, String sortie, String genres, String theme, decimal prix, String description,decimal stock,bool visible)
 			: this(0, nom, editeur, types, developpeur, sortie, genres, theme, prix, description, "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",stock,visible) { }
+
+		public Jeuxvideo(int id, string nom, string types)
+			: this(id, nom, "", types, "","", "", "", 0, "", "", 0, true) { }
 	}
 }

@@ -11,15 +11,21 @@ namespace VisualGamesProjectVisual.Controllers
 {
     public class ReservationEnCoursController : ApiController
     {
-        // GET api/<controller>
-        [JwtAuthentication]
-        public IEnumerable<ReservationEnCours> Get()
+		// GET api/<controller>
+		[JwtAuthentication]
+		public IEnumerable<ReservationEnCours> Get()
         {
              return ReservationEnCoursDAO.GetAllReservationEnCours();
         }
 
-        // GET api/<controller>/5
-        [JwtAuthentication]
+		
+		public IEnumerable<ReservationEnCours> GetMembreRes(int idMembre)
+		{
+			return ReservationEnCoursDAO.GetReservMembre(idMembre);
+		}
+
+		// GET api/<controller>/5
+		[JwtAuthentication]
         public IEnumerable<ReservationEnCours> Get(int type, int id)
         {
             if (type == 0)

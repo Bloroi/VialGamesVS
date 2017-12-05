@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VialGamesVisual.Models;
 
 namespace VisualGamesProjectVisual.Models
 {
@@ -31,7 +32,7 @@ namespace VisualGamesProjectVisual.Models
 			set;
 		}
 
-		public bool Etat
+		public string Etat
 		{
 			get;
 			set;
@@ -43,30 +44,55 @@ namespace VisualGamesProjectVisual.Models
             set;
         }
 
-        public int IdJeuVideo
+        public int IdJeuxVideo
         {
             get;
             set;
         }
 
-        public ReservationEnCours()
+		public Jeuxvideo Jv
+		{
+			get;
+			set;
+		}
+
+		public Membre Memb
+		{
+			get;
+			set;
+		}
+
+		public ReservationEnCours()
         {
         }
 
-        public ReservationEnCours(int idReservation, string dateReservation, string dateLivraison, decimal prixAchat,bool etat, int idMembre, int idJeuVideo)
+        public ReservationEnCours(int idReservation, string dateReservation, string dateLivraison, decimal prixAchat,string etat)
         {
             IdReservation = idReservation;
             DateReservation = dateReservation;
             DateLivraison = dateLivraison;
 			PrixAchat = prixAchat;
 			Etat = etat;
-            IdMembre = idMembre;
-            IdJeuVideo = idJeuVideo;
-        }
-
-        public ReservationEnCours(string dateReservation, string dateLivraison, decimal prixAchat, bool etat, int idMembre, int idJeuVideo):this(0, dateReservation, dateLivraison, prixAchat, etat, idMembre, idJeuVideo)
+		}
+		
+        public ReservationEnCours(int id,string dateReservation, string dateLivraison, decimal prixAchat, string etat, Membre m, Jeuxvideo jv):this(id, dateReservation, dateLivraison, prixAchat, etat)
         {
+			Memb = m;
+			Jv = jv;
+		}
 
-        }
-    }
+		public ReservationEnCours(int id, string dateReservation, string dateLivraison, decimal prixAchat, string etat, int idMembre, int idJv) :this(id, dateReservation, dateLivraison, prixAchat, etat)
+		{
+			IdMembre = idMembre;
+			IdJeuxVideo = idJv;
+		}
+		
+		public ReservationEnCours(string dateReservation, string dateLivraison, decimal prixAchat, string etat, int idMembre, int idJv) :this(0, dateReservation, dateLivraison, prixAchat, etat)
+		{
+			IdMembre = idMembre;
+			IdJeuxVideo = idJv;
+		}
+		
+
+	}
 }
