@@ -17,6 +17,7 @@ namespace VisualGamesProjectVisual.Controllers
         {
              return ReservationEnCoursDAO.GetAllReservationEnCours();
         }
+
 		[JwtAuthentication]
 		public IEnumerable<ReservationEnCours> GetMembreRes(int idMembre)
 		{

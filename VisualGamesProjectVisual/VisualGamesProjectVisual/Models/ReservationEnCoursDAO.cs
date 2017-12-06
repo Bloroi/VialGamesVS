@@ -15,8 +15,8 @@ namespace VisualGamesProjectVisual.Models
 		private static readonly string GETRESERVATIONMEMBRE = "select ReservationEnCours.* , Membre.* , Jeuxvideo.Id , Jeuxvideo.Nom,Jeuxvideo.Types from ReservationEnCours join Membre on ReservationEnCours.idMembre=Membre.id join Jeuxvideo on Jeuxvideo.id=ReservationEnCours.idJeuVideo";
 		private static readonly string WHEREQUERY2 = " where Membre.id = @id";
 		private static readonly string CREATE = "INSERT INTO reservationEnCours(dateReservation, dateLivraison, prixAchat, etat, idMembre, idJeuVideo) OUTPUT INSERTED.ID VALUES (@dateReservation, @dateLivraison, @prixAchat, @etat, @idMembre, @idJeuVideo)";
-        private static readonly string DELETE = "DELETE FROM reservationEnCours WHERE idReservation = @idReservation";
-        private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@dateReservation, dateLivraison=@dateLivraison, prixAchat=@prixAchat,etat=@etat, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
+        private static readonly string DELETE = "DELETE FROM reservationEnCours WHERE id = @id";
+		private static readonly string UPDATE = "UPDATE reservationEnCours SET dateReservation=@dateReservation, dateLivraison=@dateLivraison, prixAchat=@prixAchat,etat=@etat where id =@idReservation";//, idMembre=@idMenbre, idJeuVideo=@idJeuVideo";
 
         public static List<ReservationEnCours> GetAllReservationEnCours()
         {
@@ -35,15 +35,16 @@ namespace VisualGamesProjectVisual.Models
             return reservationsEnCours;
         }
 
-        public static List<ReservationEnCours> GetAllReservationEnCoursMembre(int idMembre)
+
+		public static List<ReservationEnCours> GetAllReservationEnCoursMembre(int idMembre)
         {
             List<ReservationEnCours> reservationsEnCours = new List<ReservationEnCours>();
 
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(GETMEMBRE, connection);
-                command.Parameters.AddWithValue("@idMembre", idMembre);
+                SqlCommand command = new SqlCommand(GETRESERVATIONMEMBRE, connection);
+  
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -161,15 +162,13 @@ namespace VisualGamesProjectVisual.Models
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(UPDATE, connection);
+
                 command.Parameters.AddWithValue("@idReservation", reservationEnCours.IdReservation);
                 command.Parameters.AddWithValue("@dateReservation", reservationEnCours.DateReservation);
                 command.Parameters.AddWithValue("@dateLivraison", reservationEnCours.DateLivraison);
 				command.Parameters.AddWithValue("@prixAchat", reservationEnCours.PrixAchat);
 				command.Parameters.AddWithValue("@etat", reservationEnCours.Etat);
-				command.Parameters.AddWithValue("@idMembre", reservationEnCours.IdMembre);
-                command.Parameters.AddWithValue("@idJeuVideo", reservationEnCours.IdJeuxVideo);
-
-                aEteModifie = command.ExecuteNonQuery() != 0;
+				aEteModifie = command.ExecuteNonQuery() != 0;
             }
             return aEteModifie;
         }
