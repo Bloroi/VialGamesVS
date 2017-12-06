@@ -16,14 +16,26 @@ namespace VisualGamesProjectVisual.Controllers
             return ReservationFinieDAO.GetAllReservationFinie();
         }
 
-        // GET api/<controller>/5
-        public ReservationFinie Get(int id)
-        {
-            return ReservationFinieDAO.Get(id);
-        }
 
-        // POST api/<controller>
-        public ReservationFinie Post(ReservationFinie reserv)
+		public IEnumerable<ReservationFinie> GetMembreRes(int idMembre)
+		{
+			return ReservationFinieDAO.GetReservMembre(idMembre);
+		}
+
+		public IEnumerable<ReservationFinie> Get(int type, int id)
+		{
+			if (type == 0)
+			{
+				return ReservationFinieDAO.GetAllReservationFinie(id);
+			}
+			else
+			{
+				return ReservationFinieDAO.GetAllReservationFinieMembre(id);
+			}
+		}
+
+		// POST api/<controller>
+		public ReservationFinie Post(ReservationFinie reserv)
         {
             return ReservationFinieDAO.Create(reserv);
         }

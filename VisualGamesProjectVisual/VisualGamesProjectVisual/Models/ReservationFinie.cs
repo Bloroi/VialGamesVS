@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VialGamesVisual.Models;
 
 namespace VisualGamesProjectVisual.Models
 {
@@ -25,34 +26,73 @@ namespace VisualGamesProjectVisual.Models
             set;
         }
 
-        public int IdMembre
+		public decimal PrixAchat
+		{
+			get;
+			set;
+		}
+
+		public string Etat
+		{
+			get;
+			set;
+		}
+
+
+		public int IdMembre
         {
             get;
             set;
         }
 
-        public int IdJeuVideo
+        public int IdJeuxVideo
         {
             get;
             set;
         }
 
-        public ReservationFinie()
+		public Jeuxvideo Jv
+		{
+			get;
+			set;
+		}
+
+		public Membre Memb
+		{
+			get;
+			set;
+		}
+
+		public ReservationFinie()
         {
         }
 
-        public ReservationFinie(int idReservation, string dateReservation, string dateLivraison, int idMembre, int idJeuVideo)
-        {
-            IdReservation = idReservation;
-            DateReservation = dateReservation;
-            DateLivraison = dateLivraison;
-            IdMembre = idMembre;
-            IdJeuVideo = idJeuVideo;
-        }
+		public ReservationFinie(int idReservation, string dateReservation, string dateLivraison, decimal prixAchat, string etat)
+		{
+			IdReservation = idReservation;
+			DateReservation = dateReservation;
+			DateLivraison = dateLivraison;
+			PrixAchat = prixAchat;
+			Etat = etat;
+		}
 
-        public ReservationFinie(string dateReservation, string dateLivraison, int idMembre, int idJeuVideo) : this(0, dateReservation, dateLivraison, idMembre, idJeuVideo)
+		public ReservationFinie(int id, string dateReservation, string dateLivraison, decimal prixAchat, string etat, Membre m, Jeuxvideo jv):this(id, dateReservation, dateLivraison, prixAchat, etat)
         {
+			Memb = m;
+			Jv = jv;
+		}
 
-        }
-    }
+		public ReservationFinie(int id, string dateReservation, string dateLivraison, decimal prixAchat, string etat, int idMembre, int idJv) :this(id, dateReservation, dateLivraison, prixAchat, etat)
+		{
+			IdMembre = idMembre;
+			IdJeuxVideo = idJv;
+		}
+
+		public ReservationFinie(string dateReservation, string dateLivraison, decimal prixAchat, string etat, int idMembre, int idJv) :this(0, dateReservation, dateLivraison, prixAchat, etat)
+		{
+			IdMembre = idMembre;
+			IdJeuxVideo = idJv;
+		}
+
+	}
 }
