@@ -24,7 +24,12 @@ namespace VisualGamesProjectVisual.Controllers
 
         public Membre Get(string username, string password)
         {
-            return MembreDAO.getMembre(username, password);
+                return MembreDAO.getMembre(username, password);
+        }
+
+        public int Get(int type, String username, String email)
+        {
+            return MembreDAO.CheckValidate(username, email);
         }
 
         // POST: api/Membre

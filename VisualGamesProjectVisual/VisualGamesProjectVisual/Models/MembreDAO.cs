@@ -12,10 +12,12 @@ namespace VisualGamesProjectVisual.Models
     {
         private static readonly string QUERY = "SELECT * FROM membre";
         private static readonly string GET = QUERY + " WHERE id=@id";
+        private static readonly string CHECKUSERNAME = QUERY + " WHERE username=@username";
+        private static readonly string CHECKEMAIL = QUERY + " WHERE email=@email";
         private static readonly string GETCONENCTION = QUERY + " WHERE username=@username AND password=@password";
         private static readonly string CREATE = "INSERT INTO membre(username, password, nom, prenom, dateDeNaissance, email, tel, localite, cp, adresse) OUTPUT INSERTED.ID VALUES (@username, @password, @nom, @prenom, @dateDeNaissance, @email, @tel, @localite, @cp, @adresse)";
         private static readonly string DELETE = "DELETE FROM membre WHERE id = @id";
-        private static readonly string UPDATE = "UPDATE membre SET username = @username, password = @password, nom = @nom, prenom = @prenom, dateDeNaissance = @dateDeNaissance, emai=@email, tel = @tel, localite = @localite, cp = @cp, adresse = @adresse WHERE id = @id";
+        private static readonly string UPDATE = "UPDATE membre SET username = @username, password = @password, nom = @nom, prenom = @prenom, dateDeNaissance = @dateDeNaissance, email=@email, tel = @tel, localite = @localite, cp = @cp, adresse = @adresse WHERE id = @id";
 
         public static List<Membre> GetAllMembre()
         {
@@ -80,6 +82,54 @@ namespace VisualGamesProjectVisual.Models
                 }
             }
             return membre;
+        }
+
+        public static int CheckValidate(string username, string email)
+        {
+            List<Membre> membres = new List<Membre>();
+            int test = 0;
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(CHECKUSERNAME, connection);
+                command.Parameters.AddWithValue("@username", username);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    membres.Add(new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetInt32(9), reader.GetString(10)));
+                }
+                if (membres.Count != 0)
+                {
+                    test = 1;
+                }
+                membres = new List<Membre>();
+            }
+
+            using(SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(CHECKEMAIL, connection);
+                command.Parameters.AddWithValue("@email", email);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    membres.Add(new Membre(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetInt32(9), reader.GetString(10)));
+                }
+                if (membres.Count != 0)
+                {
+                    if (test == 1)
+                    {
+                        test = 3;
+                    }
+                    else
+                    {
+                        test = 2;
+                    }
+                }
+            }
+
+            return test;
         }
 
         public static Membre Get(int id)
@@ -155,8 +205,6 @@ namespace VisualGamesProjectVisual.Models
                 command.Parameters.AddWithValue("@localite", membre.Localite);
                 command.Parameters.AddWithValue("@cp", membre.Cp);
                 command.Parameters.AddWithValue("@adresse", membre.Adresse);
-
-				command.Parameters.AddWithValue("@id", membre.Id);
 
 				aEteModifie = command.ExecuteNonQuery() != 0;
             }
