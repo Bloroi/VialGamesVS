@@ -15,6 +15,7 @@ namespace VisualGamesProjectVisual.Models
         private static readonly string GETCONENCTION = QUERY + " WHERE username=@username AND password=@password";
         private static readonly string CREATE = "INSERT INTO Magasinier(username,password,tel,email)" +
 			"OUTPUT INSERTED.id VALUES(@username,@password,@tel,@email)";
+
 		private static readonly string DELETE = "DELETE FROM Magasinier WHERE id=@id";
 		private static readonly string UPDATE = "UPDATE Magasinier SET username=@username,password = @password,tel = @tel,email = @email where id = @id";
 
@@ -38,7 +39,7 @@ namespace VisualGamesProjectVisual.Models
 
         public static Boolean getConnection(string username, string password)
         {
-            List<Magasinier> admins = new List<Magasinier>();
+            List<Magasinier> mag = new List<Magasinier>();
 
             using (SqlConnection connection = Database.GetConnection())
             {
@@ -49,10 +50,11 @@ namespace VisualGamesProjectVisual.Models
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    admins.Add(new Magasinier(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                    mag.Add(new Magasinier(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
                 }
             }
-            if (admins.Count == 0)
+
+            if (mag.Count == 0)
             {
                 return false;
             }
@@ -61,6 +63,7 @@ namespace VisualGamesProjectVisual.Models
                 return true;
             }
         }
+
 
         public static Magasinier Get(int id)
 		{

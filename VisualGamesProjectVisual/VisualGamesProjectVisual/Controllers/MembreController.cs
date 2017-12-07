@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JWT.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -39,6 +40,7 @@ namespace VisualGamesProjectVisual.Controllers
         }
 
         // PUT: api/Membre/5
+        [JwtAuthentication]
         public string Put(Membre membre)
         {
             if (MembreDAO.Update(membre))
