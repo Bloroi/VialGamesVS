@@ -23,7 +23,12 @@ namespace VisualGamesProjectVisual.Controllers
 			return MagasinierDAO.Get(id);
 		}
 
-		public Magasinier Post(Magasinier mag)
+        public Magasinier Get(string username, string password)
+        {
+            return MagasinierDAO.getMag(username, password);
+        }
+
+        public Magasinier Post(Magasinier mag)
 		{
 			return MagasinierDAO.Create(mag);
 		}

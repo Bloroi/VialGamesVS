@@ -37,6 +37,26 @@ namespace VisualGamesProjectVisual.Models
 			return listM;
 		}
 
+        public static Magasinier getMag(string username, string password)
+        {
+            Magasinier mag = null;
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETCONENCTION, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    mag = new Magasinier(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+
+                }
+            }
+            return mag;
+        }
+
         public static Boolean getConnection(string username, string password)
         {
             List<Magasinier> mag = new List<Magasinier>();

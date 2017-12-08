@@ -36,6 +36,26 @@ namespace VisualGamesProjectVisual.Models
 			return listA;
 		}
 
+        public static Administrateur getAd(string username, string password)
+        {
+            Administrateur ad = null;
+
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(GETCONENCTION, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    ad = new Administrateur(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+
+                }
+            }
+            return ad;
+        }
+
         public static Boolean getConnection(string username, string password)
         {
             List<Administrateur> admins = new List<Administrateur>();

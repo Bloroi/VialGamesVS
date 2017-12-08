@@ -18,7 +18,12 @@ namespace VisualGamesProjectVisual.Controllers
 
 		}
 
-		public Administrateur Get(int id)
+        public Administrateur Get(string username, string password)
+        {
+            return AdministrateurDAO.getAd(username, password);
+        }
+
+        public Administrateur Get(int id)
 		{
 			return AdministrateurDAO.Get(id);
 		}
