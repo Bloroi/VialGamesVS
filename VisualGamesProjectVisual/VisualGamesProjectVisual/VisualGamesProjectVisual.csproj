@@ -253,6 +253,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ico.png" />
     <Content Include="Scripts\angular\favicon.ico" />
     <Content Include="Scripts\angular\index.html" />
     <Content Include="Scripts\angular\inline.bundle.js" />
