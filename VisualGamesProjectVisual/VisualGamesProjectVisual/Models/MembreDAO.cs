@@ -84,10 +84,9 @@ namespace VisualGamesProjectVisual.Models
             return membre;
         }
 
-        public static int CheckValidate(string username, string email)
+        public static Boolean checkValidityUsername(string username)
         {
             List<Membre> membres = new List<Membre>();
-            int test = 0;
 
             using (SqlConnection connection = Database.GetConnection())
             {
@@ -101,12 +100,20 @@ namespace VisualGamesProjectVisual.Models
                 }
                 if (membres.Count != 0)
                 {
-                    test = 1;
+                    return false;
                 }
-                membres = new List<Membre>();
+                else
+                {
+                    return true;
+                }
             }
+        }
 
-            using(SqlConnection connection = Database.GetConnection())
+        public static Boolean checkValidityEmail(string email)
+        {
+            List<Membre> membres = new List<Membre>();
+        
+            using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(CHECKEMAIL, connection);
@@ -118,18 +125,13 @@ namespace VisualGamesProjectVisual.Models
                 }
                 if (membres.Count != 0)
                 {
-                    if (test == 1)
-                    {
-                        test = 3;
-                    }
-                    else
-                    {
-                        test = 2;
-                    }
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
-
-            return test;
         }
 
         public static Membre Get(int id)

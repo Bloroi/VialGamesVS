@@ -23,14 +23,21 @@ namespace VisualGamesProjectVisual.Controllers
             return MembreDAO.Get(id);
         }
 
-        public Membre Get(string username, string password)
+        public Boolean Get(int type, string chaine)
         {
-                return MembreDAO.getMembre(username, password);
+            if (type == 1)
+            {
+                return MembreDAO.checkValidityUsername(chaine);
+            }
+            else
+            {
+                return MembreDAO.checkValidityEmail(chaine);
+            }
         }
 
-        public int Get(int type, String username, String email)
+        public Membre Get(string username, string password)
         {
-            return MembreDAO.CheckValidate(username, email);
+            return MembreDAO.getMembre(username, password);
         }
 
         // POST: api/Membre
